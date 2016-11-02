@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen36"
+        android:layout_marginRight="@dimen/dimen36"
+        app:cardBackgroundColor="@color/white"
+        app:cardElevation="3dp"
+        card_view:cardCornerRadius="4dp"
+        card_view:contentPadding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:orientation="vertical">
+
+
+            <com.rey.material.widget.EditText
+                android:id="@+id/name"
+                style="@style/LightEditText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:editable="false"
+                android:hint="@string/name"
+                android:inputType="text"
+                android:textSize="15sp"
+                app:et_dividerPadding="8dp"
+                app:et_inputId="@+id/textfield_et_label_input"
+                app:et_labelPadding="8dp"
+                app:et_supportMode="none" />
+
+            <com.rey.material.widget.EditText
+                android:id="@+id/phno"
+                style="@style/LightEditText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:editable="false"
+                android:hint="@string/phone_number"
+                android:inputType="phone"
+                android:textSize="15sp"
+                app:et_dividerPadding="8dp"
+                app:et_inputId="@+id/textfield_et_label_input"
+                app:et_labelPadding="8dp"
+                app:et_supportMode="none" />
+
+            <Spinner
+                android:id="@+id/bld_spiner"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+
+                android:entries="@array/array_name"
+                android:padding="@dimen/dimen8" />
+
+            <Spinner
+                android:id="@+id/loc_spiner"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:gravity="center"
+                android:padding="@dimen/dimen8" />
+
+            <com.rey.material.widget.EditText
+                android:id="@+id/adress"
+                style="@style/LightEditText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+
+                android:hint="Hospital Name OR Address"
+                android:inputType="textMultiLine"
+                android:textSize="15sp"
+                app:et_dividerPadding="8dp"
+                app:et_inputId="@+id/textfield_et_label_input"
+                app:et_labelPadding="8dp"
+                app:et_supportMode="none" />
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

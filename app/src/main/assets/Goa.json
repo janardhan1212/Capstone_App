@@ -1,0 +1,34 @@
+{ "results": [
+	{
+        "createdAt": "2016-01-17T15:26:36.852Z",
+        "id": "354",
+        "name": "Margao",
+        "objectId": "BcjwiHGhpF",
+        "state": "Goa",
+        "updatedAt": "2016-01-17T15:26:36.852Z"
+    },
+	{
+        "createdAt": "2016-01-17T15:26:36.790Z",
+        "id": "336",
+        "name": "Panaji",
+        "objectId": "Hcj4TfNf3v",
+        "state": "Goa",
+        "updatedAt": "2016-01-17T15:26:36.790Z"
+    },
+	{
+        "createdAt": "2016-01-17T15:26:38.147Z",
+        "id": "731",
+        "name": "Mapusa",
+        "objectId": "LRis7lbtos",
+        "state": "Goa",
+        "updatedAt": "2016-01-17T15:26:38.147Z"
+    },
+	{
+        "createdAt": "2016-01-17T15:26:36.721Z",
+        "id": "316",
+        "name": "Marmagao",
+        "objectId": "dZX2vx89D6",
+        "state": "Goa",
+        "updatedAt": "2016-01-17T15:26:36.721Z"
+    }
+] }

@@ -1,0 +1,196 @@
+package com.janardhan.blood2life.Main_screen;
+
+
+import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.text.format.DateUtils;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.janardhan.blood2life.Helpers.SQLiteHandler;
+import com.janardhan.blood2life.R;
+import com.janardhan.blood2life.adapter.PostViewHolder;
+import com.janardhan.blood2life.pojos.Post;
+import com.janardhan.blood2life.utils.FirebaseUtil;
+import com.janardhan.blood2life.utils.p_MyCustomTextView_mbold;
+
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class PostFragment extends Fragment {
+
+    public static final String TAG = "PostsFragment";
+    private static final String KEY_LAYOUT_POSITION = "layoutPosition";
+    private int mRecyclerViewPosition = 0;
+    private OnPostSelectedListener mListener;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter<PostViewHolder> mAdapter;
+    private SQLiteHandler db;
+    private HashMap<String, String> user_;
+    private p_MyCustomTextView_mbold mempty_view;
+
+    public PostFragment() {
+        // Required empty public constructor
+    }
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View rootView = inflater.inflate(R.layout.fragment_post, container, false);
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.my_recycler_view);
+        mempty_view = (p_MyCustomTextView_mbold) rootView.findViewById(R.id.empty_view);
+        db = new SQLiteHandler(getActivity());
+        user_ = db.getUserDetails();
+        return rootView;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+
+        mRecyclerView.setLayoutManager(linearLayoutManager);
+
+      /*  if (savedInstanceState != null) {
+            // Restore saved layout manager type.
+            mRecyclerViewPosition = (int) savedInstanceState
+                    .getSerializable(KEY_LAYOUT_POSITION);
+            mRecyclerView.scrollToPosition(mRecyclerViewPosition);
+            // TODO: RecyclerView only restores position properly for some tabs.
+        }
+        Log.d(TAG, "Restoring recycler view position (all): " + mRecyclerViewPosition);*/
+        final Query allPostsQuery = FirebaseUtil.getPostsRef().orderByChild("state").startAt(user_.get("state")).endAt(user_.get("state"));
+        allPostsQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                if (snapshot.getValue() != null) {
+                    mAdapter = getFirebaseRecyclerAdapter(allPostsQuery);
+
+                    mRecyclerView.setVisibility(View.VISIBLE);
+                    mempty_view.setVisibility(View.GONE);
+                    mAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+                        @Override
+                        public void onItemRangeInserted(int positionStart, int itemCount) {
+                            super.onItemRangeInserted(positionStart, itemCount);
+                            // TODO: Refresh feed view.
+                        }
+                    });
+
+                    mRecyclerView.setAdapter(mAdapter);
+                } else {
+                    mRecyclerView.setVisibility(View.GONE);
+                    mempty_view.setVisibility(View.VISIBLE);
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+
+            }
+        });
+
+
+    }
+
+    private FirebaseRecyclerAdapter<Post, PostViewHolder> getFirebaseRecyclerAdapter(Query query) {
+        return new FirebaseRecyclerAdapter<Post, PostViewHolder>(
+                Post.class, R.layout.request_feed, PostViewHolder.class, query) {
+            @Override
+            public void populateViewHolder(final PostViewHolder postViewHolder,
+                                           final Post post, final int position) {
+                setupPost(postViewHolder, post, position, null);
+            }
+
+            @Override
+            public void onViewRecycled(PostViewHolder holder) {
+                super.onViewRecycled(holder);
+//                FirebaseUtil.getLikesRef().child(holder.mPostKey).removeEventListener(holder.mLikeListener);
+            }
+        };
+    }
+
+    private void setupPost(final PostViewHolder postViewHolder, final Post post, final int position, final String inPostKey) {
+        final Map<String, Object> postValues = post.toMap();
+        String loc = postValues.get("city") + "," + postValues.get("state") + "," + postValues.get("hospital_address");
+        postViewHolder.setText(postValues.get("name").toString(), loc, postValues.get("phone_number").toString(), postValues.get("blood_group").toString(), "hi");
+        // postViewHolder.setTimestamp(DateUtils.getRelativeTimeSpanString((long) postValues.get("time_stamp")).toString());
+        final String postKey;
+        final String share_text = "I need " + postValues.get("blood_group") + "blood group urgently at " + loc + "," + "/n ~ " + postValues.get("name") + "," + postValues.get("phone_number").toString();
+        if (mAdapter instanceof FirebaseRecyclerAdapter) {
+            postKey = ((FirebaseRecyclerAdapter) mAdapter).getRef(position).getKey();
+        } else {
+            postKey = inPostKey;
+        }
+
+
+        postViewHolder.setTimestamp(DateUtils.getRelativeTimeSpanString(
+                Long.parseLong(postValues.get("time_stamp").toString())).toString());
+        postViewHolder.setIcon(postValues.get("profile_pic").toString(), postValues.get("uid").toString());
+        postViewHolder.setPostClickListener(new PostViewHolder.PostClickListener() {
+            @Override
+            public void showComments() {
+                Log.d(TAG, "Comment position: " + position);
+                mListener.onPostComment(postKey);
+            }
+
+            @Override
+            public void share_post() {
+                Log.d(TAG, "Share position: " + position);
+                mListener.onPostShare(share_text);
+            }
+
+            @Override
+            public void call_post() {
+                Log.d(TAG, "Call position: " + position);
+                String val = "tel:+91" + postValues.get("phone_number");
+                mListener.onPostCall(val);
+
+            }
+
+        });
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnPostSelectedListener) {
+            mListener = (OnPostSelectedListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnPostSelectedListener");
+        }
+    }
+    // Method to share either text or URL.
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    public interface OnPostSelectedListener {
+        void onPostComment(String postKey);
+
+        void onPostShare(String postKey);
+
+        void onPostCall(String postKey);
+    }
+}

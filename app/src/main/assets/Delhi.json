@@ -1,0 +1,18 @@
+{ "results": [
+	{
+        "createdAt": "2016-01-17T15:26:36.126Z",
+        "id": "143",
+        "name": "New Delhi",
+        "objectId": "eeCn6G1Ovw",
+        "state": "Delhi",
+        "updatedAt": "2016-01-17T15:26:36.126Z"
+    },
+	{
+        "createdAt": "2016-01-17T15:26:35.640Z",
+        "id": "2",
+        "name": "Delhi",
+        "objectId": "kvNEwbHW88",
+        "state": "Delhi",
+        "updatedAt": "2016-01-17T15:26:35.640Z"
+    }
+] }

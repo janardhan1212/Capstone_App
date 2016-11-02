@@ -1,0 +1,96 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/dimen56">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/slid_bar"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <com.janardhan.blood2life.utils.p_MyCustomTextView_bold
+                android:id="@+id/tv_need"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:text="I need "
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <Spinner
+                android:id="@+id/bld_spiner"
+                android:layout_width="wrap_content"
+                android:layout_height="18dp"
+                android:layout_margin="4dp"
+                android:layout_toRightOf="@+id/tv_need"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/array_name" />
+
+            <com.janardhan.blood2life.utils.p_MyCustomTextView_bold
+                android:id="@+id/tv_bld"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/bld_spiner"
+                android:background="@color/white"
+                android:text="Blood near "
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+
+        <Spinner
+            android:id="@+id/loc_spiner"
+            android:layout_width="wrap_content"
+            android:layout_height="21dp"
+            android:drawSelectorOnTop="true"
+            android:paddingLeft="@dimen/dimen8" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/slid_bar"
+        android:layout_marginBottom="54dp"
+        android:gravity="bottom"
+        android:orientation="vertical">
+
+        <com.rey.material.widget.CheckBox
+            style="@style/Material.Drawable.CheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:clickable="false"
+            android:enabled="false"
+            android:gravity="center"
+            android:text="Request sent to all app users present in your location." />
+
+        <com.rey.material.widget.CheckBox
+            style="@style/Material.Drawable.CheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Share on my facbook wall" />
+    </LinearLayout>
+
+    <com.rey.material.widget.Button
+        android:id="@+id/post"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/blood_red"
+        android:text="POST"
+        android:textColor="@color/white" />
+
+
+</RelativeLayout>

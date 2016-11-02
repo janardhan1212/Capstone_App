@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="landing_bg">
+        <item>@color/c1</item>
+        <item>@color/c2</item>
+        <item>@color/c3</item>
+
+
+    </array>
+    <string-array name="array_name">
+        <item>A+</item>
+        <item>A-</item>
+        <item>B+</item>
+        <item>B-</item>
+        <item>AB+</item>
+        <item>AB-</item>
+        <item>O+</item>
+        <item>O-</item>
+    </string-array>
+    <string-array name="loc_name">
+        <item>MyLocation</item>
+        <item>Change Location</item>
+    </string-array>
+    <array name="icons">
+        <item>@drawable/welcome_2</item>
+        <item>@drawable/find2</item>
+        <item>@drawable/post_2</item>
+
+
+    </array>
+
+    <string-array name="titles" >
+
+        <item>@string/Welcome_S</item>
+        <item>@string/find</item>
+        <item>@string/post</item>
+
+
+    </string-array>
+    <string-array name="states" >
+
+        <item>Andaman and Nicobar Islands</item>
+        <item>Andhra Pradesh</item>
+        <item>Assam</item>
+        <item>Bihar</item>
+        <item>Chandigarh</item>
+        <item>Chhattisgarh</item>
+        <item>Dadra and Nagar Haveli</item>
+        <item>Delhi</item>
+        <item>Goa</item>
+        <item>Gujarat</item>
+        <item>Haryana</item>
+        <item>Himachal Pradesh</item>
+        <item>Jammu and Kashmir</item>
+        <item>Jharkhand</item>
+        <item>Karnataka</item>
+        <item>Kerala</item>
+        <item>Maharashtra</item>
+        <item>Manipur</item>
+        <item>Meghalaya</item>
+        <item>Mizoram</item>
+        <item>Nagaland</item>
+        <item>Odisha</item>
+        <item>Puducherry</item>
+        <item>Punjab</item>
+        <item>Kerala</item>
+        <item>Tamil Nadu</item>
+        <item>Telangana</item>
+        <item>Tripura</item>
+        <item>Uttar Pradesh</item>
+        <item>Uttarakhand</item>
+        <item>West Bengal</item>
+
+
+
+
+</string-array>
+
+    <string-array name="hints" >
+
+        <item>@string/email_hint</item>
+        <item>@string/calender_hint</item>
+        <item>@string/shopping_hint</item>
+
+
+    </string-array>
+</resources>

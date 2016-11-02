@@ -1,0 +1,50 @@
+{ "results": [
+	{
+        "createdAt": "2016-01-17T15:26:38.447Z",
+        "id": "818",
+        "name": "Solan",
+        "objectId": "8I0jY27ImR",
+        "state": "Himachal Pradesh",
+        "updatedAt": "2016-01-17T15:26:38.447Z"
+    },
+	{
+        "createdAt": "2016-01-17T15:26:39.247Z",
+        "id": "1052",
+        "name": "Sundarnagar",
+        "objectId": "EBNZNNiQv5",
+        "state": "Himachal Pradesh",
+        "updatedAt": "2016-01-17T15:26:39.247Z"
+    },
+	{
+        "createdAt": "2016-01-17T15:26:37.416Z",
+        "id": "518",
+        "name": "Mandi",
+        "objectId": "ThZQFWhPi0",
+        "state": "Himachal Pradesh",
+        "updatedAt": "2016-01-17T15:26:37.416Z"
+    },
+	{
+        "createdAt": "2016-01-17T15:26:36.450Z",
+        "id": "237",
+        "name": "Shimla",
+        "objectId": "TzYdQ8SLnQ",
+        "state": "Himachal Pradesh",
+        "updatedAt": "2016-01-17T15:26:36.450Z"
+    },
+	{
+        "createdAt": "2016-01-17T15:26:39.318Z",
+        "id": "1073",
+        "name": "Palampur",
+        "objectId": "cLibMy72nt",
+        "state": "Himachal Pradesh",
+        "updatedAt": "2016-01-17T15:26:39.318Z"
+    },
+	{
+        "createdAt": "2016-01-17T15:26:38.837Z",
+        "id": "932",
+        "name": "Nahan",
+        "objectId": "h3sh6RMH8J",
+        "state": "Himachal Pradesh",
+        "updatedAt": "2016-01-17T15:26:38.837Z"
+    }
+] }

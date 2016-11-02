@@ -1,0 +1,34 @@
+{ "results": [
+	{
+        "createdAt": "2016-01-17T15:26:35.907Z",
+        "id": "80",
+        "name": "Pondicherry",
+        "objectId": "6HpvmkTnvo",
+        "state": "Puducherry",
+        "updatedAt": "2016-01-17T15:26:35.907Z"
+    },
+	{
+        "createdAt": "2016-01-17T15:26:37.571Z",
+        "id": "563",
+        "name": "Yanam",
+        "objectId": "C0G9Llo8UF",
+        "state": "Puducherry",
+        "updatedAt": "2016-01-17T15:26:37.571Z"
+    },
+	{
+        "createdAt": "2016-01-17T15:26:36.943Z",
+        "id": "380",
+        "name": "Karaikal",
+        "objectId": "jKihwFOwJ9",
+        "state": "Puducherry",
+        "updatedAt": "2016-01-17T15:26:36.943Z"
+    },
+	{
+        "createdAt": "2016-01-17T15:26:38.295Z",
+        "id": "774",
+        "name": "Mahe",
+        "objectId": "r7iCVxS5qE",
+        "state": "Puducherry",
+        "updatedAt": "2016-01-17T15:26:38.295Z"
+    }
+] }

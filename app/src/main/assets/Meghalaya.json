@@ -1,0 +1,26 @@
+{ "results": [
+	{
+        "createdAt": "2016-01-17T15:26:37.082Z",
+        "id": "420",
+        "name": "Tura",
+        "objectId": "8I3mnzdTqx",
+        "state": "Meghalaya",
+        "updatedAt": "2016-01-17T15:26:37.082Z"
+    },
+	{
+        "createdAt": "2016-01-17T15:26:36.088Z",
+        "id": "132",
+        "name": "Shillong",
+        "objectId": "ht9TV9K2KK",
+        "state": "Meghalaya",
+        "updatedAt": "2016-01-17T15:26:36.088Z"
+    },
+	{
+        "createdAt": "2016-01-17T15:26:38.847Z",
+        "id": "935",
+        "name": "Nongstoin",
+        "objectId": "xEGsGK0Rlo",
+        "state": "Meghalaya",
+        "updatedAt": "2016-01-17T15:26:38.847Z"
+    }
+] }

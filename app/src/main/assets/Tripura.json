@@ -1,0 +1,58 @@
+{ "results": [
+	{
+        "createdAt": "2016-01-17T15:26:39.740Z",
+        "id": "1196",
+        "name": "Khowai",
+        "objectId": "8csyKRqnoQ",
+        "state": "Tripura",
+        "updatedAt": "2016-01-17T15:26:39.740Z"
+    },
+	{
+        "createdAt": "2016-01-17T15:26:35.966Z",
+        "id": "97",
+        "name": "Agartala",
+        "objectId": "FBKH7Kxozh",
+        "state": "Tripura",
+        "updatedAt": "2016-01-17T15:26:35.966Z"
+    },
+	{
+        "createdAt": "2016-01-17T15:26:38.557Z",
+        "id": "850",
+        "name": "Udaipur",
+        "objectId": "LFs1fNQMEn",
+        "state": "Tripura",
+        "updatedAt": "2016-01-17T15:26:38.557Z"
+    },
+	{
+        "createdAt": "2016-01-17T15:26:39.723Z",
+        "id": "1191",
+        "name": "Belonia",
+        "objectId": "LbErO8Fc26",
+        "state": "Tripura",
+        "updatedAt": "2016-01-17T15:26:39.723Z"
+    },
+	{
+        "createdAt": "2016-01-17T15:26:39.003Z",
+        "id": "981",
+        "name": "Pratapgarh",
+        "objectId": "P6TWjImcB6",
+        "state": "Tripura",
+        "updatedAt": "2016-01-17T15:26:39.003Z"
+    },
+	{
+        "createdAt": "2016-01-17T15:26:39.692Z",
+        "id": "1182",
+        "name": "Kailasahar",
+        "objectId": "r2AHVXfzJf",
+        "state": "Tripura",
+        "updatedAt": "2016-01-17T15:26:39.692Z"
+    },
+	{
+        "createdAt": "2016-01-17T15:26:38.721Z",
+        "id": "898",
+        "name": "Dharmanagar",
+        "objectId": "v03tbbl2xd",
+        "state": "Tripura",
+        "updatedAt": "2016-01-17T15:26:38.721Z"
+    }
+] }

@@ -1,0 +1,74 @@
+<resources>
+    <string name="app_name">New Blood App</string>
+    <string name="facebook_app_id">324401877696410</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="hello">Hello World, ParseStarterProjectActivity!</string>
+
+
+    <string name="hello_world">Hello world!</string>
+
+
+    <string name="Welcome_S">Welcome to Blood to life</string>
+    <string name="find"> Find Donor </string>
+    <string name="post">Request For Donor</string>
+    <string name="srt"> One Tap More to Save a LIFE</string>
+    <string name="email_hint">App which holds the power to save lives in the palm of your hand.</string>
+    <string name="calender_hint">Find donor in your locality.</string>
+    <string name="shopping_hint">Didnt find donor .Dont worry,Post a request and wait for response.</string>
+    <string name="social_network_hint">Every tomarrow needs a blood donor today.</string>
+    <string name="skip">SKIP</string>
+    <string name="Username">Username</string>
+    <string name="Password">Password</string>
+    <string name="LoginBtn">Login</string>
+    <string name="SignupBtn">Sign Up</string>
+    <string name="LogoutBtn">Log Out</string>
+    <string name="Welcome">Welcome!</string>
+    <string name="new_comment_hint">Enter new comment</string>
+
+    <string name="user_logged_out_error">You must be logged in to do that.</string>
+    <string name="title_activity_get_states">get_states</string>
+    <string name="title_activity_form_submit">form_submit</string>
+    <string name="title_activity_post_request">post_request</string>
+    <string name="title_activity_main_screen">Main_screen</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_ma_screen_sample">Blood To Life</string>
+    <string name="logout">Log Out</string>
+    <string name="signed_out">Signed Out</string>
+    <string name="firebase_status_fmt">Firebase User: %s</string>
+    <string name="desc_firebase_lockup">Firebase logo and name</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_facebook_login">facebook_login</string>
+    <string name="facebook_status_fmt">Facebook User: %s</string>
+    <string name="facebook_title_text">Facebook Login</string>
+    <string name="loading">Loading..</string>
+    <string name="title_activity_submit_post">submit_post</string>
+    <string name="title_activity_comments">CommentsActivity</string>
+    <string name="share_using">Share</string>
+    <string name="title_activity_new_main">Blood To Life</string>
+    <string name="no_data_available">No requests in your state!</string>
+    <string name="title_activity_my_posts">MyPostsActivity</string>
+    <string name="no_my_post">No Requests Done !!!</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="name">Name</string>
+    <string name="select_bld">Select Blood group</string>
+    <string name="terms_and_conditions">By submiting you agree to the terms and conditions</string>
+    <string name="no_data_please_post">NO DATA please post</string>
+    <string name="waiting">Waiting..</string>
+    <string name="blood_request">Blood Request</string>
+    <string name="request_sent_to_all_app_users_present_in_your_location">Request sent to all app users present in your location.</string>
+    <string name="post_txt">POST</string>
+    <string name="enter_phone">phone Number not entered !!</string>
+    <string name="no_nt_exit">Phone Number Not Exsit</string>
+    <string name="select_city">Select City</string>
+    <string name="before_sign">Please complete the sign up form</string>
+    <string name="went_worng">Somthing went Worng :(....</string>
+    <string name="login_success">Successfully Logged in</string>
+    <string name="error_posting">"Error posting comment: "</string>
+    <string name="error_occ">"Error occurred: "</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+</resources>

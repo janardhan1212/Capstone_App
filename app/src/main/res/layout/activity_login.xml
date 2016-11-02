@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+
+    android:orientation="vertical">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/main_rl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/blood_box"
+                    android:layout_width="@dimen/dimen240"
+                    android:layout_height="@dimen/dimen250"
+
+                    android:layout_marginLeft="@dimen/dimen56"
+                    android:src="@drawable/blood_box" />
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cv"
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/dimen36"
+                    android:layout_marginRight="@dimen/dimen36"
+                    android:layout_marginTop="@dimen/dimen240"
+                    android:padding="@dimen/activity_horizontal_margin"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardElevation="@dimen/card_elevation"
+                    card_view:cardCornerRadius="4dp"
+                    card_view:contentPadding="10dp">
+
+                    <com.rey.material.widget.EditText
+                        android:id="@+id/phono2"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:hint="@string/phone_number"
+                        android:inputType="phone"
+                        android:paddingLeft="@dimen/activity_horizontal_margin"
+                        android:textSize="15sp"
+                        app:et_labelPadding="8dp" />
+                </android.support.v7.widget.CardView>
+
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+    <com.rey.material.widget.ProgressView
+        android:id="@+id/login_progress"
+        android:layout_width="@dimen/dimen35"
+        android:layout_height="@dimen/dimen35"
+        app:v_styleId="@style/LightInCircularProgressDrawable" />
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/sub_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:clickable="true"
+        android:src="@drawable/ic_chevron_right"
+        app:layout_anchor="@id/cv"
+        app:layout_anchorGravity="right|end|bottom" />
+
+</android.support.design.widget.CoordinatorLayout>
+
+

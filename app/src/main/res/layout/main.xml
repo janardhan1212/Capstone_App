@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/landing_backgrond"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+
+    android:orientation="vertical">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@null" />
+
+    <com.janardhan.blood2life.utils.CirclePageIndicator
+        android:id="@+id/indicator"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="132dp"
+        android:padding="@dimen/padding_normal" />
+
+
+    <!--@null remove background and make the button transparent-->
+    <RelativeLayout
+        android:id="@+id/group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true">
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/button_facebook_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border"
+            android:layout_marginBottom="80dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            style="@style/LightRaiseColorButtonRippleStyle"
+            android:layout_centerInParent="true" />
+        <!-- <Button
+             android:id="@+id/push_button"
+             style="@style/LightRaiseColorButtonRippleStyle"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginBottom="80dp"
+             android:layout_marginLeft="8dp"
+             android:layout_marginRight="8dp"
+             android:layout_marginTop="8dp"
+             android:background="@drawable/border"
+
+             android:padding="15dp"
+             android:text="GET STARTED" />-->
+    </RelativeLayout>
+
+    <!--<LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <com.janardhan.blood2life.utils.p_MyCustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dimen8"
+            android:text="Already on Blood2Life ?"
+            android:textColor="@color/white"
+            android:textSize="8pt" />
+
+        <com.janardhan.blood2life.utils.p_MyCustomTextView_bold
+            android:id="@+id/logintx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:padding="@dimen/dimen8"
+            android:text="Log in"
+            android:textColor="@color/white"
+            android:textSize="10pt" />
+    </LinearLayout>-->
+
+</RelativeLayout>

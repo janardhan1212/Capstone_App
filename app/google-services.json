@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "524232404022",
+    "firebase_url": "https://capstone-3d251.firebaseio.com",
+    "project_id": "capstone-3d251",
+    "storage_bucket": "capstone-3d251.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:524232404022:android:107f401287a1ac66",
+        "android_client_info": {
+          "package_name": "com.janardhan.blood2life"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "524232404022-4lppit77ntvcgv7hha3j8bm5f1i8dg6o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.janardhan.blood2life",
+            "certificate_hash": "87EB845FF7310A4F1F04221B609A2610BA128FDE"
+          }
+        },
+        {
+          "client_id": "524232404022-dgkmncgrk5qakqku49u25t642vutkvo8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALJqp-sVZuO_cRpjsiRSuhESSftW0iKmI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "524232404022-dgkmncgrk5qakqku49u25t642vutkvo8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
