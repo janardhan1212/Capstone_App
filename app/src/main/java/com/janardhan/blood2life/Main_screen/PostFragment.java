@@ -17,6 +17,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.janardhan.blood2life.BaseFragment;
 import com.janardhan.blood2life.Helpers.SQLiteHandler;
 import com.janardhan.blood2life.R;
 import com.janardhan.blood2life.adapter.PostViewHolder;
@@ -30,7 +31,7 @@ import java.util.Map;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PostFragment extends Fragment {
+public class PostFragment extends BaseFragment {
 
     public static final String TAG = "PostsFragment";
     private static final String KEY_LAYOUT_POSITION = "layoutPosition";
@@ -67,7 +68,7 @@ public class PostFragment extends Fragment {
         linearLayoutManager.setStackFromEnd(true);
 
         mRecyclerView.setLayoutManager(linearLayoutManager);
-
+        showProgressDialog();
       /*  if (savedInstanceState != null) {
             // Restore saved layout manager type.
             mRecyclerViewPosition = (int) savedInstanceState
@@ -94,13 +95,17 @@ public class PostFragment extends Fragment {
                     });
 
                     mRecyclerView.setAdapter(mAdapter);
+                    hideProgressDialog();
                 } else {
+                    hideProgressDialog();
                     mRecyclerView.setVisibility(View.GONE);
                     mempty_view.setVisibility(View.VISIBLE);
                 }
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
+                hideProgressDialog();
                 // Getting Post failed, log a message
                 Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
 
@@ -117,6 +122,7 @@ public class PostFragment extends Fragment {
             public void populateViewHolder(final PostViewHolder postViewHolder,
                                            final Post post, final int position) {
                 setupPost(postViewHolder, post, position, null);
+                hideProgressDialog();
             }
 
             @Override

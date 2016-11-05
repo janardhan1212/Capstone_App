@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -12,13 +11,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Toast;
 
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.janardhan.blood2life.BaseActivity;
 import com.janardhan.blood2life.CommentsActivity;
 import com.janardhan.blood2life.Helpers.SQLiteHandler;
 import com.janardhan.blood2life.Helpers.SessionManager;
@@ -29,13 +28,11 @@ import com.janardhan.blood2life.slides;
 
 import java.util.HashMap;
 
-public class NewMainActivity extends AppCompatActivity implements PostFragment.OnPostSelectedListener, View.OnClickListener {
+public class NewMainActivity extends BaseActivity implements PostFragment.OnPostSelectedListener, View.OnClickListener {
+    private static final String TAG = "Main Activity";
     private SessionManager session;
-
-
     private FirebaseAuth mAuth;
     private FirebaseAnalytics mFirebaseAnalytics;
-    private static final String TAG = "Main Activity";
     private SQLiteHandler db;
     private HashMap<String, String> user_;
     private FloatingActionButton fab;

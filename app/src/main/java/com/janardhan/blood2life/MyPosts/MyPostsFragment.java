@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,6 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.janardhan.blood2life.BaseFragment;
 import com.janardhan.blood2life.Helpers.SQLiteHandler;
 import com.janardhan.blood2life.R;
 import com.janardhan.blood2life.pojos.Post;
@@ -39,7 +39,7 @@ import static com.janardhan.blood2life.utils.FirebaseUtil.getCurrentUserId;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MyPostsFragment extends Fragment {
+public class MyPostsFragment extends BaseFragment {
 
     public static final String TAG = "PostsFragment";
     private static final String KEY_LAYOUT_POSITION = "layoutPosition";
@@ -75,7 +75,7 @@ public class MyPostsFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.setStackFromEnd(true);
-
+        showProgressDialog();
         mRecyclerView.setLayoutManager(linearLayoutManager);
 
       /*  if (savedInstanceState != null) {
@@ -104,7 +104,9 @@ public class MyPostsFragment extends Fragment {
                     });
 
                     mRecyclerView.setAdapter(mAdapter);
+                    hideProgressDialog();
                 } else {
+                    hideProgressDialog();
                     mRecyclerView.setVisibility(View.GONE);
                     mempty_view.setVisibility(View.VISIBLE);
                 }
@@ -113,6 +115,7 @@ public class MyPostsFragment extends Fragment {
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 // Getting Post failed, log a message
+                hideProgressDialog();
                 Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
 
             }
