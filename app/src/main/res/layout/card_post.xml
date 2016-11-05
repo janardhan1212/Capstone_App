@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dimen36"
         android:layout_marginRight="@dimen/dimen36"
+        android:layout_marginStart="@dimen/dimen36"
         app:cardBackgroundColor="@color/white"
         app:cardElevation="3dp"
         card_view:cardCornerRadius="4dp"
@@ -60,10 +61,10 @@
                 android:id="@+id/bld_spiner"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_marginTop="@dimen/activity_horizontal_margin"
-
                 android:entries="@array/array_name"
+
+                android:gravity="center"
                 android:padding="@dimen/dimen8" />
 
             <Spinner

@@ -1,21 +1,21 @@
-<RelativeLayout
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/colorPrimary"
-    xmlns:android="http://schemas.android.com/apk/res/android" >
+    android:background="@color/colorPrimary">
     <ImageView
         android:id="@+id/blood_box"
         android:layout_width="240dp"
         android:layout_height="200dp"
         android:layout_marginLeft="@dimen/dimen56"
+        android:layout_marginStart="@dimen/dimen56"
         android:src="@drawable/blood_box"/>
 
 
     <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -24,26 +24,27 @@
 
             <include
                 android:id="@+id/cardview"
-                android:layout_marginTop="@dimen/dimen190"
+                layout="@layout/card_post"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                layout="@layout/card_post" />
+                android:layout_marginTop="@dimen/dimen190" />
 
         </android.support.v4.widget.NestedScrollView>
 
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab_post"
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            app:layout_anchor="@id/cardview"
-            app:layout_anchorGravity="right|end|bottom"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:clickable="true"
             android:paddingBottom="@dimen/activity_horizontal_margin"
-
             android:src="@drawable/ic_chevron_right"
-            android:clickable="true"/>
+
+            app:layout_anchor="@id/cardview"
+            app:layout_anchorGravity="right|end|bottom" />
         <com.rey.material.widget.ProgressView
             android:id="@+id/sin_p_cir"
             android:layout_width="@dimen/dimen32"

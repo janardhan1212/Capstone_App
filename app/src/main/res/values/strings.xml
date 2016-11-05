@@ -8,7 +8,8 @@
 
     <string name="hello_world">Hello world!</string>
 
-
+    <string name="ineed">"I need </string>
+    <string name="bloodneed">Blood near </string>
     <string name="Welcome_S">Welcome to Blood to life</string>
     <string name="find"> Find Donor </string>
     <string name="post">Request For Donor</string>
@@ -75,4 +76,12 @@
     <string name="share">Share</string>
     <string name="camp_conduct">Camp Conduct</string>
     <string name="profilepic">Profile pic</string>
+    <string name="fid">Firebase User ID: 123456789abc</string>
+    <string name="send">Send</string>
+    <string name="blood_group">Blood Group</string>
+    <string name="your_location">Your Location</string>
+    <string name="js_hospital_city_state">js hospital,city,State</string>
+    <string name="comment">Comment</string>
+    <string name="call">Call</string>
+    <string name="swipe_down_to_close">Swipe down to close</string>
 </resources>

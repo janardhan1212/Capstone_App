@@ -31,15 +31,16 @@
         android:layout_centerInParent="true">
         <com.facebook.login.widget.LoginButton
             android:id="@+id/button_facebook_login"
+            style="@style/LightRaiseColorButtonRippleStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/border"
+            android:layout_centerInParent="true"
             android:layout_marginBottom="@dimen/dimen80"
             android:layout_marginLeft="@dimen/dimen8"
             android:layout_marginRight="@dimen/dimen8"
+            android:layout_marginStart="@dimen/dimen8"
             android:layout_marginTop="@dimen/dimen8"
-            style="@style/LightRaiseColorButtonRippleStyle"
-            android:layout_centerInParent="true" />
+            android:background="@drawable/border" />
        <!-- <Button
             android:id="@+id/push_button"
             style="@style/LightRaiseColorButtonRippleStyle"

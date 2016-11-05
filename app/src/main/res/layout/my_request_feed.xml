@@ -107,6 +107,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/dimen8"
+                    android:layout_marginStart="@dimen/dimen8"
                     android:text="7386781357"
 
                     android:textColor="@color/primary_text"
@@ -132,7 +133,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/dimen8"
-                    android:text="js hospital,city,State"
+                    android:layout_marginStart="@dimen/dimen8"
+                    android:text="@string/js_hospital_city_state"
                     android:textColor="@color/primary_text"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -156,7 +158,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/dimen8"
-                    android:text="js hospital,city,State,janais is lover boy,good boy"
+                    android:layout_marginStart="@dimen/dimen8"
+                    android:text="@string/comment"
                     android:textColor="@color/primary_text"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -193,7 +196,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/dimen8"
-                    android:text="Comment"
+                    android:layout_marginStart="@dimen/dimen8"
+                    android:text="@string/comment"
                     android:textColor="@color/timestamp" />
             </LinearLayout>
 
@@ -218,6 +222,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/dimen8"
+                    android:layout_marginStart="@dimen/dimen8"
                     android:text="@string/share"
                     android:textColor="@color/timestamp" />
             </LinearLayout>

@@ -5,7 +5,7 @@ android {
         config {
             keyAlias 'MyAndroidKey'
             keyPassword 'android'
-            storeFile file('/Users/janardhanyerranagu/Stuff/capstone_APK/capstone_keystore.jks')
+            storeFile file('/Users/janardhanyerranagu/Stuff/my_projects/Capstone App master/capstone_keystore.jks')
             storePassword 'android'
         }
     }

@@ -12,7 +12,7 @@
         android:background="@color/white"
         android:gravity="center"
         android:padding="8dp"
-        android:text="Swipe down to close"
+        android:text="@string/swipe_down_to_close"
         android:textColor="@color/black" />
 
     <LinearLayout
@@ -45,6 +45,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="@dimen/dimen8"
                 android:layout_marginRight="@dimen/dimen8"
+                android:layout_marginStart="@dimen/dimen8"
                 android:background="@color/blood_red" />
         </LinearLayout>
 
@@ -70,6 +71,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="@dimen/dimen8"
                 android:layout_marginRight="@dimen/dimen8"
+                android:layout_marginStart="@dimen/dimen8"
                 android:background="@color/white" />
         </LinearLayout>
 
@@ -94,7 +96,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:text="I need "
+                android:text="@string/ineed"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
@@ -115,7 +117,7 @@
                 android:layout_toEndOf="@+id/bld_spiner"
                 android:layout_toRightOf="@+id/bld_spiner"
                 android:background="@color/white"
-                android:text="Blood near "
+                android:text="@string/bloodneed"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 

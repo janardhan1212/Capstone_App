@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/tools"
 
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
 
 
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
     <android.support.v7.widget.CardView
         android:id="@+id/card_view"
-        android:layout_marginLeft="@dimen/dimen36"
-        android:layout_marginRight="@dimen/dimen36"
-        app:cardElevation="@dimen/dimen3"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen36"
+        android:layout_marginRight="@dimen/dimen36"
+        android:layout_marginStart="@dimen/dimen36"
+        app:cardBackgroundColor="@color/white"
+        app:cardElevation="@dimen/dimen3"
         card_view:cardCornerRadius="4dp"
-        card_view:contentPadding="10dp"
-        app:cardBackgroundColor="@color/white">
+        card_view:contentPadding="10dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -28,64 +28,64 @@
 
             <com.rey.material.widget.EditText
                 android:id="@+id/name"
+                style="@style/LightEditText"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:hint="Name"
                 android:layout_centerHorizontal="true"
-                app:et_labelPadding="8dp"
                 android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:editable="false"
+                android:hint="Name"
+                android:inputType="text"
                 android:textSize="15sp"
                 app:et_dividerPadding="8dp"
-                android:editable="false"
                 app:et_inputId="@+id/textfield_et_label_input"
-                app:et_supportMode="none"
-                style="@style/LightEditText"
-                android:inputType="text" />
+                app:et_labelPadding="8dp"
+                app:et_supportMode="none" />
 
             <com.rey.material.widget.EditText
                 android:id="@+id/email"
+                style="@style/LightEditText"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/email_hint"
                 android:layout_centerHorizontal="true"
-                app:et_labelPadding="8dp"
                 android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:editable="false"
+                android:hint="@string/email_hint"
+                android:inputType="textEmailAddress"
                 android:textSize="15sp"
                 app:et_dividerPadding="8dp"
-                android:editable="false"
                 app:et_inputId="@+id/textfield_et_label_input"
-                app:et_supportMode="none"
-                style="@style/LightEditText"
-                android:inputType="textEmailAddress" />
+                app:et_labelPadding="8dp"
+                app:et_supportMode="none" />
             <com.rey.material.widget.EditText
                 android:id="@+id/phno"
+                style="@style/LightEditText"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/phone_number"
                 android:layout_centerHorizontal="true"
-                app:et_labelPadding="8dp"
                 android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:editable="false"
+                android:hint="@string/phone_number"
+                android:inputType="phone"
                 android:textSize="15sp"
                 app:et_dividerPadding="8dp"
-                android:editable="false"
                 app:et_inputId="@+id/textfield_et_label_input"
-                app:et_supportMode="none"
-                style="@style/LightEditText"
-                android:inputType="phone" />
+                app:et_labelPadding="8dp"
+                app:et_supportMode="none" />
             <com.rey.material.widget.Spinner
                 android:id="@+id/spinner_label"
-                android:padding="@dimen/dimen8"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                app:spn_label="@string/select_bld"
+                android:padding="@dimen/dimen8"
                 app:spn_arrowColor="@color/colorControlNormal"
+                app:spn_label="@string/select_bld"
              />
             <com.janardhan.blood2life.utils.p_MyCustomTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorControlNormal"
-                android:text="@string/terms_and_conditions"/>
+                android:text="@string/terms_and_conditions"
+                android:textColor="@color/colorControlNormal" />
 
         </LinearLayout>
 

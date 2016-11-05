@@ -40,6 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dimen8"
+            android:layout_marginStart="@dimen/dimen8"
             android:layout_marginTop="@dimen/dimen8"
             android:layout_toEndOf="@+id/comment_author_icon"
             android:layout_toRightOf="@id/comment_author_icon"
@@ -60,6 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dimen8"
+                android:layout_marginStart="@dimen/dimen8"
                 android:text=""
                 android:textColor="@android:color/secondary_text_dark" />
         </LinearLayout>
@@ -80,6 +82,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginLeft="48dp"
+        android:layout_marginStart="48dp"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:background="@color/grey_300" />
 </LinearLayout>
