@@ -21,8 +21,8 @@
                     android:id="@+id/profilePic"
                     android:layout_width="@dimen/feed_item_profile_pic"
                     android:layout_height="@dimen/feed_item_profile_pic"
-                    android:src="@drawable/place_holder"
-                    android:contentDescription="@null" />
+                android:contentDescription="@string/profilepic"
+                android:src="@drawable/place_holder" />
 
 
 
@@ -30,6 +30,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/profilePic"
+
                 android:layout_toRightOf="@+id/profilePic"
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/feed_item_profile_info_padd">

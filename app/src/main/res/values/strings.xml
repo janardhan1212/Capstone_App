@@ -71,4 +71,8 @@
     <string name="error_occ">"Error occurred: "</string>
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
+    <string name="i_got_my_blood">I got my blood.</string>
+    <string name="share">Share</string>
+    <string name="camp_conduct">Camp Conduct</string>
+    <string name="profilepic">Profile pic</string>
 </resources>

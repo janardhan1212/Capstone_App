@@ -41,6 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dimen8"
             android:layout_marginTop="@dimen/dimen8"
+            android:layout_toEndOf="@+id/comment_author_icon"
             android:layout_toRightOf="@id/comment_author_icon"
             android:orientation="horizontal">
 
@@ -68,6 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tx_holder"
+            android:layout_toEndOf="@+id/comment_author_icon"
             android:layout_toRightOf="@id/comment_author_icon"
             android:paddingLeft="@dimen/dimen8"
             android:textColor="@android:color/primary_text_light" />

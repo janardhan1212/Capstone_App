@@ -62,7 +62,7 @@
                 android:background="@color/white"
                 android:gravity="center"
                 android:padding="8dp"
-                android:text="Camp Conduct"
+                android:text="@string/camp_conduct"
                 android:textColor="@color/black" />
 
             <View
@@ -103,6 +103,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="18dp"
                 android:layout_margin="4dp"
+                android:layout_toEndOf="@+id/tv_need"
                 android:layout_toRightOf="@+id/tv_need"
                 android:drawSelectorOnTop="true"
                 android:entries="@array/array_name"></Spinner>
@@ -111,6 +112,7 @@
                 android:id="@+id/tv_bld"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/bld_spiner"
                 android:layout_toRightOf="@+id/bld_spiner"
                 android:background="@color/white"
                 android:text="Blood near "
