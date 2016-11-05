@@ -1,9 +1,11 @@
 package com.janardhan.blood2life;
 
 import android.app.ProgressDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -20,13 +22,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.janardhan.blood2life.Helpers.SQLiteHandler;
-import com.janardhan.blood2life.Helpers.SessionManager;
-import com.janardhan.blood2life.Main_screen.Ma_screen_sample;
-import com.janardhan.blood2life.Main_screen.NewMainActivity;
-import com.janardhan.blood2life.pojos.User_s;
-import com.janardhan.blood2life.utils.CirclePageIndicator;
-import com.janardhan.blood2life.utils.ColorShades;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -46,6 +41,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.janardhan.blood2life.Helpers.MyProvider;
+import com.janardhan.blood2life.Helpers.SQLiteHandler;
+import com.janardhan.blood2life.Helpers.SessionManager;
+import com.janardhan.blood2life.Main_screen.NewMainActivity;
+import com.janardhan.blood2life.pojos.User_s;
+import com.janardhan.blood2life.utils.CirclePageIndicator;
+import com.janardhan.blood2life.utils.ColorShades;
 
 
 public class slides extends AppCompatActivity {
@@ -218,6 +220,150 @@ public class slides extends AppCompatActivity {
 
     }
 
+    // [START on_start_add_listener]
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+
+    // [START on_stop_remove_listener]
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mCallbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+    // [END on_start_add_listener]
+
+    // [START auth_with_facebook]
+    private void handleFacebookAccessToken(AccessToken token) {
+        Log.d(TAG, "handleFacebookAccessToken:" + token);
+        // [START_EXCLUDE]
+        showProgressDialog();
+        // [END_EXCLUDE]
+        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
+
+                        // If sign in fails, display a message to the user. If sign in succeeds
+                        // the auth state listener will be notified and logic to handle the
+                        // signed in user can be handled in the listener.
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "signInWithCredential", task.getException());
+                            Toast.makeText(slides.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }//else {
+                         //   updateUI(user);
+                       // }
+
+
+                        // [START_EXCLUDE]
+                      //  hideProgressDialog();
+                        // [END_EXCLUDE]
+                    }
+                });
+    }
+    // [END on_stop_remove_listener]
+
+    public void signOut() {
+        mAuth.signOut();
+        updateUI(null);
+    }
+
+    private void updateUI(final FirebaseUser user) {
+
+        if (user != null) {
+//            mStatusTextView.setText(getString(R.string.facebook_status_fmt, user.getDisplayName()));
+           // mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
+            mDatabase.child("mobile_users").child(user.getUid()).addListenerForSingleValueEvent(
+                    new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            // Get user value
+                            // dataSnapshot.
+
+                            if(dataSnapshot.getValue()!=null)
+                            {
+                                Log.w(TAG, "old_user");
+                                User_s user_p = dataSnapshot.getValue(User_s.class);
+                                ContentValues values = new ContentValues();
+                                values.put(MyProvider.name, user_p.getFullName());
+                                Uri uri = getContentResolver().insert(MyProvider.CONTENT_URI, values);
+
+                                db.addUser(user.getUid(),user_p.getFullName(), user_p.getEmail_id(), user_p.getphone_number(), user_p.getGroup(), user_p.getCity(),user_p.getState(),user_p.getRefreshedToken(),user_p.getProfile_pic());
+                                session.setLogin(true);
+                                Intent i = new Intent(slides.this, NewMainActivity.class);
+                                startActivity(i);
+                                overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
+                            }
+                            else {
+                                Log.w(TAG, "new_user");
+                                Intent i = new Intent(slides.this, get_states.class);
+                                i.putExtra("user_id",user.getUid());
+                                i.putExtra("email_id",user.getEmail());
+                                i.putExtra("user_name",user.getDisplayName());
+                               // i.putExtra("sex",user.)
+                                startActivity(i);
+                                overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
+                                //writeNewUser(user.getUid(),user.getEmail());
+                            }
+                            hideProgressDialog();
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            Log.w(TAG, "getUser:onCancelled", databaseError.toException());
+                            hideProgressDialog();
+                        }
+                    });
+            // writeNewUser(user.getUid(),user.getEmail());
+         //   findViewById(R.id.button_facebook_login).setVisibility(View.GONE);
+          //  findViewById(R.id.button_facebook_signout).setVisibility(View.VISIBLE);
+        } else {
+         //   mStatusTextView.setText(R.string.signed_out);
+         //   mDetailTextView.setText(null);
+
+           // findViewById(R.id.button_facebook_login).setVisibility(View.VISIBLE);
+            //findViewById(R.id.button_facebook_signout).setVisibility(View.GONE);
+        }
+    }
+    // [END auth_with_facebook]
+
+   /* @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.button_facebook_signout:
+                signOut();
+                break;
+        }
+    }*/
+    public void showProgressDialog() {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(this);
+            mProgressDialog.setMessage(getString(R.string.loading));
+            mProgressDialog.setIndeterminate(true);
+        }
+
+        mProgressDialog.show();
+    }
+
+    public void hideProgressDialog() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.hide();
+        }
+    }
+
     public class ViewPagerAdapter extends PagerAdapter {
 
         private int iconResId, titleArrayResId, hintArrayResId;
@@ -322,146 +468,6 @@ public class slides extends AppCompatActivity {
                 }
 
             }
-        }
-    }
-    // [START on_start_add_listener]
-    @Override
-    public void onStart() {
-        super.onStart();
-        mAuth.addAuthStateListener(mAuthListener);
-    }
-    // [END on_start_add_listener]
-
-    // [START on_stop_remove_listener]
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (mAuthListener != null) {
-            mAuth.removeAuthStateListener(mAuthListener);
-        }
-    }
-    // [END on_stop_remove_listener]
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        mCallbackManager.onActivityResult(requestCode, resultCode, data);
-    }
-
-    // [START auth_with_facebook]
-    private void handleFacebookAccessToken(AccessToken token) {
-        Log.d(TAG, "handleFacebookAccessToken:" + token);
-        // [START_EXCLUDE]
-        showProgressDialog();
-        // [END_EXCLUDE]
-        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
-
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
-                        if (!task.isSuccessful()) {
-                            Log.w(TAG, "signInWithCredential", task.getException());
-                            Toast.makeText(slides.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                        }//else {
-                         //   updateUI(user);
-                       // }
-
-
-                        // [START_EXCLUDE]
-                      //  hideProgressDialog();
-                        // [END_EXCLUDE]
-                    }
-                });
-    }
-    // [END auth_with_facebook]
-
-    public void signOut() {
-        mAuth.signOut();
-        updateUI(null);
-    }
-
-    private void updateUI(final FirebaseUser user) {
-
-        if (user != null) {
-//            mStatusTextView.setText(getString(R.string.facebook_status_fmt, user.getDisplayName()));
-           // mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
-            mDatabase.child("mobile_users").child(user.getUid()).addListenerForSingleValueEvent(
-                    new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            // Get user value
-                            // dataSnapshot.
-
-                            if(dataSnapshot.getValue()!=null)
-                            {
-                                Log.w(TAG, "old_user");
-                                User_s user_p = dataSnapshot.getValue(User_s.class);
-                                db.addUser(user.getUid(),user_p.getFullName(), user_p.getEmail_id(), user_p.getphone_number(), user_p.getGroup(), user_p.getCity(),user_p.getState(),user_p.getRefreshedToken(),user_p.getProfile_pic());
-                                session.setLogin(true);
-                                Intent i = new Intent(slides.this, NewMainActivity.class);
-                                startActivity(i);
-                                overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
-                            }
-                            else {
-                                Log.w(TAG, "new_user");
-                                Intent i = new Intent(slides.this, get_states.class);
-                                i.putExtra("user_id",user.getUid());
-                                i.putExtra("email_id",user.getEmail());
-                                i.putExtra("user_name",user.getDisplayName());
-                               // i.putExtra("sex",user.)
-                                startActivity(i);
-                                overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
-                                //writeNewUser(user.getUid(),user.getEmail());
-                            }
-                            hideProgressDialog();
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-                            Log.w(TAG, "getUser:onCancelled", databaseError.toException());
-                            hideProgressDialog();
-                        }
-                    });
-            // writeNewUser(user.getUid(),user.getEmail());
-         //   findViewById(R.id.button_facebook_login).setVisibility(View.GONE);
-          //  findViewById(R.id.button_facebook_signout).setVisibility(View.VISIBLE);
-        } else {
-         //   mStatusTextView.setText(R.string.signed_out);
-         //   mDetailTextView.setText(null);
-
-           // findViewById(R.id.button_facebook_login).setVisibility(View.VISIBLE);
-            //findViewById(R.id.button_facebook_signout).setVisibility(View.GONE);
-        }
-    }
-
-   /* @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.button_facebook_signout:
-                signOut();
-                break;
-        }
-    }*/
-    public void showProgressDialog() {
-        if (mProgressDialog == null) {
-            mProgressDialog = new ProgressDialog(this);
-            mProgressDialog.setMessage(getString(R.string.loading));
-            mProgressDialog.setIndeterminate(true);
-        }
-
-        mProgressDialog.show();
-    }
-
-    public void hideProgressDialog() {
-        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-            mProgressDialog.hide();
         }
     }
 

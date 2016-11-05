@@ -100,6 +100,11 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/post_widget_info" />
         </receiver>
+        <provider
+            android:name=".Helpers.MyProvider"
+            android:authorities="com.janardhan.blood2life.Helpers.MyProvider"
+            android:exported="true"
+            android:multiprocess="true"></provider>
     </application>
 
 </manifest>

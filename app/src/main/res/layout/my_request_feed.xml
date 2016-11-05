@@ -22,7 +22,6 @@
                 android:id="@+id/profilePic"
                 android:layout_width="@dimen/feed_item_profile_pic"
                 android:layout_height="@dimen/feed_item_profile_pic"
-                android:contentDescription="@null"
                 android:src="@drawable/place_holder" />
 
 
@@ -30,6 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/profilePic"
                 android:layout_toRightOf="@+id/profilePic"
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/feed_item_profile_info_padd">
@@ -227,15 +227,15 @@
             android:id="@+id/status_ll"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:gravity="center"
             android:background="@color/red"
+            android:gravity="center"
             android:padding="@dimen/dimen8">
 
             <com.janardhan.blood2life.utils.p_MyCustomTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:text="I got my blood." />
+                android:text="I got my blood."
+                android:textColor="@color/white" />
         </LinearLayout>
     </LinearLayout>
 </FrameLayout>
