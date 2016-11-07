@@ -7,7 +7,7 @@
 
 
     <string name="hello_world">Hello world!</string>
-
+    <string name="authority">com.janardhan.blood2life.Helpers</string>
     <string name="ineed">"I need </string>
     <string name="bloodneed">Blood near </string>
     <string name="Welcome_S">Welcome to Blood to life</string>

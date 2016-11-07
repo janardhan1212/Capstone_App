@@ -5,7 +5,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -41,13 +40,23 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.janardhan.blood2life.Helpers.MyProvider;
+import com.janardhan.blood2life.Helpers.DataProviderContract;
 import com.janardhan.blood2life.Helpers.SQLiteHandler;
 import com.janardhan.blood2life.Helpers.SessionManager;
 import com.janardhan.blood2life.Main_screen.NewMainActivity;
 import com.janardhan.blood2life.pojos.User_s;
 import com.janardhan.blood2life.utils.CirclePageIndicator;
 import com.janardhan.blood2life.utils.ColorShades;
+
+import static com.janardhan.blood2life.Helpers.DataProviderContract.KEY_CITY;
+import static com.janardhan.blood2life.Helpers.DataProviderContract.KEY_EMAIL;
+import static com.janardhan.blood2life.Helpers.DataProviderContract.KEY_GROUP;
+import static com.janardhan.blood2life.Helpers.DataProviderContract.KEY_NAME;
+import static com.janardhan.blood2life.Helpers.DataProviderContract.KEY_PHNO;
+import static com.janardhan.blood2life.Helpers.DataProviderContract.KEY_STATE;
+import static com.janardhan.blood2life.Helpers.DataProviderContract.KEY_TOKEN;
+import static com.janardhan.blood2life.Helpers.DataProviderContract.KEY_UID;
+import static com.janardhan.blood2life.Helpers.DataProviderContract.KEY_pic_url;
 
 
 public class slides extends AppCompatActivity {
@@ -298,8 +307,17 @@ public class slides extends AppCompatActivity {
                                 Log.w(TAG, "old_user");
                                 User_s user_p = dataSnapshot.getValue(User_s.class);
                                 ContentValues values = new ContentValues();
-                                values.put(MyProvider.name, user_p.getFullName());
-                                Uri uri = getContentResolver().insert(MyProvider.CONTENT_URI, values);
+                                values.put(KEY_UID, user.getUid());
+                                values.put(KEY_NAME, user_p.getFullName());
+                                values.put(KEY_EMAIL, user_p.getEmail_id()); // Email
+                                values.put(KEY_PHNO, user_p.getphone_number()); // Name
+                                values.put(KEY_GROUP, user_p.getGroup()); // Email
+                                values.put(KEY_CITY, user_p.getCity());
+                                values.put(KEY_STATE, user_p.getState()); // Email
+                                values.put(KEY_pic_url, user_p.getProfile_pic());
+                                values.put(KEY_TOKEN, user_p.getRefreshedToken());
+
+                                getContentResolver().insert(DataProviderContract.CONTENT_URI, values);
 
                                 db.addUser(user.getUid(),user_p.getFullName(), user_p.getEmail_id(), user_p.getphone_number(), user_p.getGroup(), user_p.getCity(),user_p.getState(),user_p.getRefreshedToken(),user_p.getProfile_pic());
                                 session.setLogin(true);

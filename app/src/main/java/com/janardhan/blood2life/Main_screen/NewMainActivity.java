@@ -1,9 +1,13 @@
 package com.janardhan.blood2life.Main_screen;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -19,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.janardhan.blood2life.BaseActivity;
 import com.janardhan.blood2life.CommentsActivity;
+import com.janardhan.blood2life.Helpers.DataProviderContract;
 import com.janardhan.blood2life.Helpers.SQLiteHandler;
 import com.janardhan.blood2life.Helpers.SessionManager;
 import com.janardhan.blood2life.MyPosts.MyPostsActivity;
@@ -28,8 +33,14 @@ import com.janardhan.blood2life.slides;
 
 import java.util.HashMap;
 
-public class NewMainActivity extends BaseActivity implements PostFragment.OnPostSelectedListener, View.OnClickListener {
+public class NewMainActivity extends BaseActivity implements PostFragment.OnPostSelectedListener, View.OnClickListener, LoaderManager.LoaderCallbacks<Cursor> {
     private static final String TAG = "Main Activity";
+    private static final int URL_LOADER = 0;
+    private static final String[] PROJECTION =
+            {
+                    DataProviderContract._ID,
+                    DataProviderContract.KEY_NAME
+            };
     private SessionManager session;
     private FirebaseAuth mAuth;
     private FirebaseAnalytics mFirebaseAnalytics;
@@ -43,6 +54,7 @@ public class NewMainActivity extends BaseActivity implements PostFragment.OnPost
     private Animation rotate_forward;
     private Animation rotate_backward;
     private Boolean isFabOpen = false;
+    private String user_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -207,5 +219,38 @@ public class NewMainActivity extends BaseActivity implements PostFragment.OnPost
         Intent intent = new Intent(getApplicationContext(), slides.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int loaderID, Bundle args) {
+        /*
+         * Takes action based on the ID of the Loader that's being created
+         */
+        switch (loaderID) {
+            case URL_LOADER:
+                // Returns a new CursorLoader
+                return new CursorLoader(
+                        this,                                     // Context
+                        DataProviderContract.PICTUREURL_TABLE_CONTENTURI,  // Table to query
+                        PROJECTION,                                        // Projection to return
+                        null,                                              // No selection clause
+                        null,                                              // No selection arguments
+                        null                                               // Default sort order
+                );
+            default:
+                // An invalid id was passed in
+                return null;
+
+        }
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        user_name = data.getColumnName(1);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        user_name = null;
     }
 }
