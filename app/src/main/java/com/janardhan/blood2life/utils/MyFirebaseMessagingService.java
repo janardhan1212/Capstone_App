@@ -25,10 +25,9 @@ import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import com.janardhan.blood2life.MainActivity;
-import com.janardhan.blood2life.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.janardhan.blood2life.R;
 
 import java.util.Map;
 
@@ -53,18 +52,25 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         Map<String,String> data=remoteMessage.getData();
         String msd=data.get("message");
-        sendNotification(msd);
+        String class_name = data.get("click_action");
+        String post_id = data.get("post_id");
+        String title = data.get("title");
+
+        try {
+            Class cls = Class.forName(class_name);
+            Intent i = new Intent(this, cls);
+            i.putExtra("post_key", post_id);
+            sendNotification(msd, i, title);
+        } catch (ClassNotFoundException e) {
+            //means you made a wrong input in firebase console
+        }
+
         Log.d(TAG, "Notification Message Body: " +msd);
     }
-    // [END receive_message]
 
-    /**
-     * Create and show a simple notification containing the received FCM message.
-     *
-     * @param messageBody FCM message body received.
-     */
-    private void sendNotification(String messageBody) {
-        Intent intent = new Intent(this, MainActivity.class);
+    private void sendNotification(String messageBody, Intent intent, String title) {
+
+        // Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                 PendingIntent.FLAG_ONE_SHOT);
@@ -72,7 +78,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("FCM Message")
+                .setContentTitle(title)
                 .setContentText(messageBody)
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
@@ -83,4 +89,5 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
     }
+
 }

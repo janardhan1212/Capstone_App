@@ -15,15 +15,16 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.firebase.messaging.RemoteMessage;
-import com.janardhan.blood2life.Helpers.SQLiteHandler;
-import com.janardhan.blood2life.R;
-import com.janardhan.blood2life.fcm.NotifConfig;
-import com.janardhan.blood2life.pojos.Post;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.janardhan.blood2life.Helpers.SQLiteHandler;
+import com.janardhan.blood2life.R;
+import com.janardhan.blood2life.Rest.ApiClient;
+import com.janardhan.blood2life.Rest.ApiInterface;
+import com.janardhan.blood2life.pojos.Post;
+import com.janardhan.blood2life.pojos.Response_Push;
 import com.rey.material.app.Dialog;
 import com.rey.material.app.DialogFragment;
 import com.rey.material.app.SimpleDialog;
@@ -36,14 +37,22 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.UnknownHostException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.Response;
+import retrofit.Retrofit;
+
 public class submit_post extends AppCompatActivity {
 
+    private static final String TAG = "Submit Activity";
+    HashMap<String, String> user_;
     private DatabaseReference mDatabase;
     private String state;
     private String sel_state;
@@ -56,10 +65,7 @@ public class submit_post extends AppCompatActivity {
     private Spinner loc_spiner;
     private String phno;
     private SQLiteHandler db;
-    HashMap<String, String> user_;
     private String citiy2;
-
-    private static final String TAG = "Submit Activity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -277,10 +283,10 @@ public class submit_post extends AppCompatActivity {
     }
 
     // [START write_fan_out]
-    private void writeNewPost(String userId, String uname, String phno, String selectedItem, String l_city, String l_state, String address) {
+    private void writeNewPost(String userId, final String uname, String phno, final String selectedItem, final String l_city, final String l_state, final String address) {
         // Create new post at /user-posts/$userid/$postid and at
         // /posts/$postid simultaneously
-        String key = mDatabase.child("active_posts").push().getKey();
+        final String key = mDatabase.child("active_posts").push().getKey();
         Long timeStamp = new Long(new Timestamp(new Date().getTime()).getTime());
 
         Post post = new Post(userId, uname, phno, selectedItem, l_city, l_state, address, "T", "F",timeStamp.toString(),user_.get("profile_pic_url"));
@@ -297,18 +303,51 @@ public class submit_post extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "User post updated.");
+                            String title = selectedItem + "Needed in" + "," + address + "," + l_city + "," + l_state;
+                            String message = "Hi,This is" + uname + ",Please Help me!!";
                             FirebaseMessaging fm = FirebaseMessaging.getInstance();
-
-                            fm.send(new RemoteMessage.Builder(NotifConfig.SENDERID + "@gcm.googleapis.com")
+                            Map<String, String> final_sen = new HashMap<String, String>();
+                            final_sen.put("topic", l_state.replace(" ", "_"));
+                            final_sen.put("activity", "com.janardhan.blood2life.PostDetailsActivity");
+                            final_sen.put("post_id", key);
+                            final_sen.put("message", message);
+                            final_sen.put("title", title);
+                            final ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+                            Call<Response_Push> call = apiService.send_post_notif(final_sen);
+                            network_call(call);
+                            /* fm.send(new RemoteMessage.Builder(NotifConfig.SENDERID + "@gcm.googleapis.com")
                                    // .setMessageId(Integer.toString(msgId.incrementAndGet()))
                                     .addData("my_message", "Hello World")
                                     .addData("my_action","SAY_HELLO")
                                    // .addData("my_action","SAY_HELLO")
-                                    .build());
-                            onBackPressed();
+                                    .build());*/
+
                         }
                     }
                 });
+    }
+
+    public void network_call(Call<Response_Push> call) {
+        //top_bar.setVisibility(View.VISIBLE);
+        // SlideToDown();
+
+        call.enqueue(new Callback<Response_Push>() {
+            @Override
+            public void onResponse(Response<Response_Push> response, Retrofit retrofit) {
+                onBackPressed();
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                if (t instanceof UnknownHostException) {
+                    Log.e("error", "not internet connect");
+                    //Add your code for displaying no network connection error
+
+                }
+            }
+
+
+        });
     }
 
     public void set_city(String state) {

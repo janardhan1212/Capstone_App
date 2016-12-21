@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.janardhan.blood2life.BaseFragment;
@@ -121,7 +122,9 @@ public class PostFragment extends BaseFragment {
             @Override
             public void populateViewHolder(final PostViewHolder postViewHolder,
                                            final Post post, final int position) {
-                setupPost(postViewHolder, post, position, null);
+                final DatabaseReference postRef = getRef(position);
+                final String postKey = postRef.getKey();
+                setupPost(postViewHolder, post, position, postKey);
                 hideProgressDialog();
             }
 
@@ -171,6 +174,14 @@ public class PostFragment extends BaseFragment {
 
             }
 
+            @Override
+            public void post_click() {
+                Log.d(TAG, "inPostKey" + inPostKey);
+                //   String val = "tel:+91" + postValues.get("phone_number");
+                mListener.onPostClick(inPostKey);
+
+            }
+
         });
     }
 
@@ -198,5 +209,7 @@ public class PostFragment extends BaseFragment {
         void onPostShare(String postKey);
 
         void onPostCall(String postKey);
+
+        void onPostClick(String postKey);
     }
 }

@@ -27,6 +27,7 @@ import com.janardhan.blood2life.Helpers.DataProviderContract;
 import com.janardhan.blood2life.Helpers.SQLiteHandler;
 import com.janardhan.blood2life.Helpers.SessionManager;
 import com.janardhan.blood2life.MyPosts.MyPostsActivity;
+import com.janardhan.blood2life.PostDetailsActivity;
 import com.janardhan.blood2life.R;
 import com.janardhan.blood2life.Submit_post.submit_post;
 import com.janardhan.blood2life.slides;
@@ -66,8 +67,8 @@ public class NewMainActivity extends BaseActivity implements PostFragment.OnPost
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         db = new SQLiteHandler(getApplicationContext());
         user_ = db.getUserDetails();
-        FirebaseMessaging.getInstance().subscribeToTopic(user_.get("state"));
-        FirebaseMessaging.getInstance().subscribeToTopic(user_.get("city"));
+        FirebaseMessaging.getInstance().subscribeToTopic(user_.get("state").replace(" ", "_"));
+        FirebaseMessaging.getInstance().subscribeToTopic(user_.get("city").replace(" ", "_"));
         FirebaseMessaging.getInstance().subscribeToTopic(user_.get("uid"));
 
 
@@ -159,6 +160,13 @@ public class NewMainActivity extends BaseActivity implements PostFragment.OnPost
         intent.setData(Uri.parse(postKey));
         startActivity(intent);
 
+    }
+
+    @Override
+    public void onPostClick(String postKey) {
+        Intent intent = new Intent(NewMainActivity.this, PostDetailsActivity.class);
+        intent.putExtra("post_key", postKey);
+        startActivity(intent);
     }
 
     public void animateFAB() {

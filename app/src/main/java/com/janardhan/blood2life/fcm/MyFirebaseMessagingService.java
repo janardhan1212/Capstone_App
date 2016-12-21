@@ -2,12 +2,14 @@ package com.janardhan.blood2life.fcm;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.util.Log;
+
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-import com.janardhan.blood2life.Main_screen.NewMainActivity;
+import com.janardhan.blood2life.slides;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -76,6 +78,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             String imageUrl = data.getString("image");
             String timestamp = data.getString("timestamp");
             String url = data.getString("url");
+            String click_action = data.getString("click_action");
             JSONObject payload = data.getJSONObject("payload");
             Log.e(TAG, "url: " + url);
             Log.e(TAG, "title: " + title);
@@ -84,6 +87,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             Log.e(TAG, "payload: " + payload.toString());
             Log.e(TAG, "imageUrl: " + imageUrl);
             Log.e(TAG, "timestamp: " + timestamp);
+            Log.e(TAG, "click_action:" + click_action);
 
 
             if (!NotificationUtils.isAppIsInBackground(getApplicationContext())) {
@@ -97,7 +101,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 notificationUtils.playNotificationSound();
             } else {
                 Intent resultIntent;
-                 resultIntent = new Intent(getApplicationContext(), NewMainActivity.class);
+
+                resultIntent = new Intent(getApplicationContext(), slides.class);
 
                 // check for image attachment
                 if (TextUtils.isEmpty(imageUrl)) {
@@ -114,6 +119,20 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
     }
 
+    private void startSelectedActivity(String className, Bundle extras) {
+        Class cls = null;
+        try {
+            cls = Class.forName(className);
+        } catch (ClassNotFoundException e) {
+
+        }
+        Intent i = new Intent(getApplicationContext(), cls);
+
+        if (i != null) {
+            i.putExtras(extras);
+            this.startActivity(i);
+        }
+    }
     /**
      * Showing notification with text only
      */

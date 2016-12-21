@@ -487,6 +487,7 @@ public class slides extends AppCompatActivity {
 
             }
         }
+
     }
 
 

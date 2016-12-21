@@ -84,4 +84,5 @@
     <string name="comment">Comment</string>
     <string name="call">Call</string>
     <string name="swipe_down_to_close">Swipe down to close</string>
+    <string name="title_activity_post_details">PostDetailsActivity</string>
 </resources>

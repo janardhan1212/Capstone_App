@@ -17,18 +17,17 @@
 package com.janardhan.blood2life.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.facebook.login.widget.ProfilePictureView;
-import com.github.siyamed.shapeimageview.CircularImageView;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 import com.janardhan.blood2life.R;
 import com.janardhan.blood2life.utils.GlideUtil;
 import com.janardhan.blood2life.utils.p_MyCustomTextView_mbold;
 import com.janardhan.blood2life.utils.p_MyCustomTextView_regular;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.ValueEventListener;
 
 public class PostViewHolder extends RecyclerView.ViewHolder {
     private static final int POST_TEXT_MAX_LINES = 6;
@@ -76,6 +75,13 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
 
             }
         });
+        itemView.findViewById(R.id.ll_click).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.post_click();
+
+            }
+        });
     }
 
 
@@ -109,12 +115,13 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         } catch (ParseException e) {
             e.printStackTrace();
         }*/
-     mTimestampView.setText(timestamp);
+        mTimestampView.setText(timestamp);
     }
 
 
     public void setPostClickListener(PostClickListener listener) {
         mListener = listener;
+        Log.d("Clicked", "I hurts me!!!!!!");
     }
 
 
@@ -124,5 +131,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         void share_post();
 
         void call_post();
+
+        void post_click();
     }
 }

@@ -19,21 +19,23 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
-import com.janardhan.blood2life.CommentsActivity;
-import com.janardhan.blood2life.Helpers.SQLiteHandler;
-import com.janardhan.blood2life.Helpers.SessionManager;
-import com.janardhan.blood2life.R;
-import com.janardhan.blood2life.Submit_post.submit_post;
-import com.janardhan.blood2life.slides;
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.janardhan.blood2life.CommentsActivity;
+import com.janardhan.blood2life.Helpers.SQLiteHandler;
+import com.janardhan.blood2life.Helpers.SessionManager;
+import com.janardhan.blood2life.PostDetailsActivity;
+import com.janardhan.blood2life.R;
+import com.janardhan.blood2life.Submit_post.submit_post;
+import com.janardhan.blood2life.slides;
 
 import java.util.HashMap;
 
 public class  Ma_screen_sample extends AppCompatActivity implements PostFragment.OnPostSelectedListener,View.OnClickListener  {
 
+    private static final String TAG = "Main Activity";
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -43,17 +45,12 @@ public class  Ma_screen_sample extends AppCompatActivity implements PostFragment
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
-
     /**
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
     private SessionManager session;
-
-
     private FirebaseAuth mAuth;
-
-    private static final String TAG = "Main Activity";
     private SQLiteHandler db;
     private HashMap<String, String> user_;
     private FloatingActionButton fab;
@@ -178,6 +175,13 @@ public class  Ma_screen_sample extends AppCompatActivity implements PostFragment
 
     }
 
+    @Override
+    public void onPostClick(String postKey) {
+        Intent intent = new Intent(Ma_screen_sample.this, PostDetailsActivity.class);
+        intent.putExtra("post_key", postKey);
+        startActivity(intent);
+    }
+
     public void animateFAB(){
 
         if(isFabOpen){
@@ -223,6 +227,21 @@ public class  Ma_screen_sample extends AppCompatActivity implements PostFragment
         }
     }
 
+    private void logoutUser() {
+        session.setLogin(false);
+        db.deleteUsers();
+        String city = user_.get("city");
+        FirebaseMessaging.getInstance().unsubscribeFromTopic(city);
+        mAuth = FirebaseAuth.getInstance();
+        mAuth.signOut();
+        LoginManager.getInstance().logOut();
+
+        // Launching the login activity
+        Intent intent = new Intent(getApplicationContext(), slides.class);
+        startActivity(intent);
+        finish();
+    }
+
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
@@ -260,24 +279,6 @@ public class  Ma_screen_sample extends AppCompatActivity implements PostFragment
             }
             return null;
         }
-    }
-
-
-
-
-    private void logoutUser() {
-        session.setLogin(false);
-        db.deleteUsers();
-        String city = user_.get("city");
-        FirebaseMessaging.getInstance().unsubscribeFromTopic(city);
-        mAuth = FirebaseAuth.getInstance();
-        mAuth.signOut();
-        LoginManager.getInstance().logOut();
-
-        // Launching the login activity
-        Intent intent = new Intent(getApplicationContext(), slides.class);
-        startActivity(intent);
-        finish();
     }
 
 }

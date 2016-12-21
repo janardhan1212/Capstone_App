@@ -35,10 +35,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.janardhan.blood2life.Helpers.SQLiteHandler;
-import com.janardhan.blood2life.pojos.Comment;
-import com.janardhan.blood2life.utils.FirebaseUtil;
-import com.janardhan.blood2life.utils.GlideUtil;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -46,6 +42,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ServerValue;
+import com.janardhan.blood2life.Helpers.SQLiteHandler;
+import com.janardhan.blood2life.pojos.Comment;
+import com.janardhan.blood2life.utils.FirebaseUtil;
+import com.janardhan.blood2life.utils.GlideUtil;
 
 import java.util.HashMap;
 
@@ -103,6 +103,7 @@ public class CommentsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_comments, container, false);
+        Log.d("mPostRef", mPostRef);
         db = new SQLiteHandler(getActivity());
         user_ = db.getUserDetails();
         RecyclerView mCommentsView = (RecyclerView) rootView.findViewById(R.id.comment_list);
